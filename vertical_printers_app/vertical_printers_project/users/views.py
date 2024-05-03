@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import User
 from .serializers import UserSerializer
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -28,3 +30,4 @@ class UserViewSet(viewsets.ModelViewSet):
         user = self.get_object()
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
