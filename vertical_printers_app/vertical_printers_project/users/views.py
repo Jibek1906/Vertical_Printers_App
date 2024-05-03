@@ -15,3 +15,10 @@ class UserViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+    @action(detail=True, methods=['put'])
+    def update_profile(self, request, pk=None):
+        user = self.get_object()
+        serializer = self.get_serializer(user, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
