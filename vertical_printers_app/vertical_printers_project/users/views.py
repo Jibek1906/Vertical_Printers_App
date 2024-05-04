@@ -18,6 +18,12 @@ class UserViewSet(viewsets.ModelViewSet):
         user = self.get_object()
         serializer = self.get_serializer(user)
         return Response(serializer.data)
+    
+    @action(detail=False, methods=['get'])
+    def list_users(self, request):
+        queryset = self.queryset
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
     @action(detail=False, methods=['post'])
     def register(self, request):
