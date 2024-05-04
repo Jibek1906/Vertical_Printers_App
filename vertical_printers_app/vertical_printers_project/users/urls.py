@@ -14,6 +14,7 @@ urlpatterns = [
     path('view_profile/<int:pk>/', UserViewSet.as_view({'get': 'view_profile'}), name='user-view-profile'),
     path('list/', UserViewSet.as_view({'get': 'list_users'}), name='user-list'),
     path('info/', UserViewSet.as_view({'get': 'user_info_by_token'}), name='user-info-by-token'),
+    path('users/', UserViewSet.as_view({'get': 'list_users'}), name='user-list'),
 ]
 
 urlpatterns += router.urls
