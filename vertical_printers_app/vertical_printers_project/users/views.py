@@ -1,12 +1,9 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.decorators import action
+from rest_framework.decorators import action, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from .models import User
 from .serializers import UserSerializer
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework_simplejwt.tokens import RefreshToken
-from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -33,12 +30,12 @@ class UserViewSet(viewsets.ModelViewSet):
 
         # Generate tokens for the newly registered user
         user = serializer.instance
-        refresh = RefreshToken.for_user(user)
+        refresh = Token.objects.create(user=user)
 
         return Response({
             'user': serializer.data,
             'refresh': str(refresh),
-            'access': str(refresh.access_token),
+            'access': str(refresh.key),
         }, status=status.HTTP_201_CREATED)
 
     @action(detail=True, methods=['put'])
@@ -60,3 +57,13 @@ class UserViewSet(viewsets.ModelViewSet):
         user = self.get_object()
         serializer = self.get_serializer(user)
         return Response(serializer.data)
+    
+    @action(detail=False, methods=['get'])
+    @permission_classes([IsAuthenticated])
+    def user_info_by_token(self, request):
+        user = request.user
+        user_data = {
+            'username': user.username,
+            'email': user.email,
+        }
+        return Response(user_data)
