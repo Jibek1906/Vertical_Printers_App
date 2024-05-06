@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'users',
     'rest_framework_simplejwt',
+    'printers',
 ]
 
 REST_FRAMEWORK = {
