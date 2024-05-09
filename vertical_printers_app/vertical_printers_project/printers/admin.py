@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Printer
+from .models import Printers
 
 
-admin.site.register(Printer)
+admin.site.register(Printers)
