@@ -1,28 +1,16 @@
 from django.db import models
-from django.contrib.auth import get_user_model
-from printers.models import Printers
 
-User = get_user_model()
-
-
-class CartItem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Printers, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-    total_price = models.PositiveIntegerField(default=0)
+class Printers(models.Model):
+    name = models.CharField(max_length=100)
+    brand = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+    color = models.CharField(max_length=50)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.product.title
-
-    def add_amount(self):
-        amount = self.product.price * self.quantity
-        result = amount
-        return result
-
-    def save(self, *args, **kwargs):
-        self.total_price = self.add_amount()
-        return super(CartItem, self).save(*args, **kwargs)
+        return self.name
 
 
 
