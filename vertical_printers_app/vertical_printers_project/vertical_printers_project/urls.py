@@ -26,4 +26,5 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api-token-auth/', views.obtain_auth_token),
     path('printers/', include('printers.urls')),
+    path('cart/', include('cart.urls')),
     ]

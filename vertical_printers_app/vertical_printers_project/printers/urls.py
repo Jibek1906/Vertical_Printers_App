@@ -1,13 +1,10 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import PrinterViewSet
+from .views import PrintersViewSet
 
 router = routers.DefaultRouter()
-router.register(r'printers', PrinterViewSet)
+router.register(r'printers', PrintersViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('', views.CartItemView.as_view(), name="cart"),
-    path('add/', views.CartItemAddView.as_view()),
-    path('delete/<int:pk>/', views.CartItemDeleteView.as_view()),
 ]
