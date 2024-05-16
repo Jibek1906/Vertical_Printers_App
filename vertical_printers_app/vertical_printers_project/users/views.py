@@ -80,3 +80,4 @@ class UserViewSet(viewsets.ModelViewSet):
             'email': email,
         }
         return Response(user_data)
+    

@@ -9,3 +9,4 @@ class PrintersViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         return permissions.IsAuthenticated(),
+
