@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from users.models import User
 
@@ -16,6 +17,9 @@ class Order(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=ORDER_STATUS_CHOICES, default='Pending')
+    card_number = models.CharField(max_length=16, default='0000000000000000')
+    expire_date = models.DateField(default=date.today)  # Store as a date
+    cvv_number = models.CharField(max_length=3,  default='000')
 
 
     def __str__(self):
