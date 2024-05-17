@@ -2,6 +2,9 @@
 
 <h4>Vertical Printers App is an innovative application created specifically for artists and creative individuals who want to turn their digital works and art into real objects through printing on printers.</h4>
 
+<h2>How it works</h2>
+<a href='https://drive.google.com/drive/folders/1_E6Y5flB_vEq4OWAGXHqP-YHy5KZF1_S'>Click</a>
+
 <h2>How our model look in Figma</h2>
 
 <a href="https://www.figma.com/design/kbwSyREyVd2byNGplYdHqo/Untitled?node-id=0%3A1&t=lI2AKQH4TOVk9jRp-1">Figma link</a>
@@ -141,6 +144,8 @@ Each person from our team created one app.
    Without Token you will get this:
 
    ![thunder6](pictures/20.png)
+
+   
 
 
 
